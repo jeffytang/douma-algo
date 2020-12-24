@@ -49,7 +49,8 @@ class MinStack2 {
 
     public void push(int x) {
         dataStack.push(x);
-        if (minStack.isEmpty() || x < minStack.peek()) {
+        // 错误纠正：视频中少了 = ，= 号是需要加上的
+        if (minStack.isEmpty() || x <= minStack.peek()) {
             minStack.push(x);
         }
     }

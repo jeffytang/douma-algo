@@ -226,13 +226,13 @@ public class BST<E extends Comparable<E>> {
         }
 
         if (parent == null) { // 删除根节点
-            // bug 修复：先释放 root 节点
-            root.right = null;
             root = root.right;
         } else {
             parent.left = min.right;
-            min.right = null;
         }
+        // bug 修复：统一释放 min 节点
+        min.right = null;
+
         size--;
         return min.data;
     }
@@ -250,13 +250,13 @@ public class BST<E extends Comparable<E>> {
         }
 
         if (parent == null) { // 删除根节点
-            // bug 修复：先释放 root 节点
-            root.left = null;
             root = root.left;
         } else {
             parent.right = max.left;
-            max.left = null;
         }
+        // bug 修复：统一释放 max 节点
+        max.left = null;
+
         size--;
         return max.data;
     }

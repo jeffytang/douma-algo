@@ -226,6 +226,8 @@ public class BST<E extends Comparable<E>> {
         }
 
         if (parent == null) { // 删除根节点
+            // bug 修复：先释放 root 节点
+            root.right = null;
             root = root.right;
         } else {
             parent.left = min.right;
@@ -248,6 +250,8 @@ public class BST<E extends Comparable<E>> {
         }
 
         if (parent == null) { // 删除根节点
+            // bug 修复：先释放 root 节点
+            root.left = null;
             root = root.left;
         } else {
             parent.right = max.left;

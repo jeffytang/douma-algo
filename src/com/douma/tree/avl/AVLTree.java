@@ -92,8 +92,10 @@ public class AVLTree<E extends Comparable<E>> {
         y.left = t3;
 
         // 更新 x 和 y 的高度
-        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+        // bug 修复，必须先要计算 y 节点的高度，然后才计算 x 节点的高度
+        // 原因：上面的 x.left = y ，说明 y 是 x 的子节点，需要先计算子节点的高度，才能计算父节点高度
         y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
 
         // 返回调整之后的根节点
         return x;
@@ -115,8 +117,10 @@ public class AVLTree<E extends Comparable<E>> {
         y.right = t3;
 
         // 更新 x 和 y 的高度
-        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+        // bug 修复，必须先要计算 y 节点的高度，然后才计算 x 节点的高度
+        // 原因：上面的 x.left = y ，说明 y 是 x 的子节点，需要先计算子节点的高度，才能计算父节点高度
         y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
 
         // 返回调整之后的根节点
         return x;

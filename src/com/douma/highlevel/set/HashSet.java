@@ -56,8 +56,12 @@ public class HashSet<E> implements Set<E> {
     @Override
     public void remove(E e) { // O(1)
         int index = hash(e, data.length);
-        data[index] = null;
-        size--;
+        // bug 修复：在删除某个元素之前，先判断这个元素是否存在
+        // 存在的话才删除
+        if (data[index] != null) {
+            data[index] = null;
+            size--;
+        }
     }
 
     @Override

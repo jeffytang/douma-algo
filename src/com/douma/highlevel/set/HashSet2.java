@@ -62,6 +62,8 @@ public class HashSet2<E> implements Set<E> {
         while (items[index] != null && !items[index].isDeleted) {
             index++;
             index = index % items.length;
+            // bug 修复：如果已经存在元素 e ，则直接返回
+            if (e.equals(items[index])) return;
         }
 
         // 这个时候的 index 对应的元素要么是 null ，要么是已经删除的元素

@@ -54,20 +54,27 @@ public class HashSet2<E> implements Set<E> {
     @Override
     public void add(E e) { // 最好：O(1)，最坏：O(n)
         int index = hash(e, items.length);
-        if (items[index] != null && e.equals(items[index].data)) {
-            return;
-        }
 
-        // 找到等于 null 或者已经删除的索引
-        while (items[index] != null && !items[index].isDeleted) {
+        // addIndex 表示元素 e 需要插入的索引位置
+        int addIndex = index;
+        // isFirst 用于辅助找到元素 e 插入的位置
+        boolean isFirst = true;
+
+        // bug 修复：add 前先判断是否存在元素 e
+        while (items[index] != null && !e.equals(items[index])) {
             index++;
             index = index % items.length;
-            // bug 修复：如果已经存在元素 e ，则直接返回
-            if (e.equals(items[index])) return;
+            // 找到第一个等于 null 或者删除的元素，并记录赋值给 addIndex
+            if ((items[index] == null || items[index].isDeleted) && isFirst) {
+                addIndex = index;
+                isFirst = false;
+            }
         }
+        // 说明已经存在 e，则直接返回
+        if (items[index] != null && !items[index].isDeleted) return;
 
-        // 这个时候的 index 对应的元素要么是 null ，要么是已经删除的元素
-        items[index] = new Item(e);
+        // 这个时候的 addIndex 对应的元素要么是 null ，要么是已经删除的元素
+        items[addIndex] = new Item(e);
         size++;
 
         if (size >= items.length * loadFactor) {

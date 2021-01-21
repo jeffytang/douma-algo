@@ -34,17 +34,20 @@ public class MaxAreaOfIsland2 {
                     int currOnes = 0;
                     ArrayDeque<int[]> stack = new ArrayDeque<>();
                     stack.push(new int[]{row, col});
+                    // bug 修复，每次将元素 push 到栈中都要将其设置为 0
+                    grid[row][col] = 0;
                     while (!stack.isEmpty()) {
                         int[] curr = stack.pop();
                         int currRow = curr[0], currCol = curr[1];
                         currOnes++;
-                        grid[currRow][currCol] = 0;
                         for (int[] dir : directions) {
                             int nextRow = currRow + dir[0];
                             int nextCol = currCol + dir[1];
                             if (inArea(nextRow, nextCol)
                                     && grid[nextRow][nextCol] == 1) {
                                 stack.push(new int[]{nextRow, nextCol});
+                                // bug 修复，每次将元素 push 到栈中都要将其设置为 0
+                                grid[nextRow][nextCol] = 0;
                             }
                         }
                     }
@@ -67,7 +70,7 @@ public class MaxAreaOfIsland2 {
                 {0,1,0,0,1,1,0,0,1,0,1,0,0},
                 {0,1,0,0,1,1,0,0,1,1,1,0,0},
                 {0,0,1,0,0,0,0,0,0,0,1,0,0},
-                {0,0,0,0,0,0,0,1,1,1,0,0,0},
+                {0,0,0,0,0,0,1,1,1,1,0,0,0},
                 {0,0,0,0,0,0,0,1,1,0,0,0,0},
         };
         MaxAreaOfIsland2 maxAreaOfIsland = new MaxAreaOfIsland2();

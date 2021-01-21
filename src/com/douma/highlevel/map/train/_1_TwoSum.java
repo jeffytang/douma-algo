@@ -30,6 +30,7 @@ public class _1_TwoSum {
     // 空间复杂度：O(1)
     public int[] twoSum2(int[] nums, int target) {
         if (nums == null || nums.length == 0) return new int[0];
+        // TODO 这里有个 bug，我们不应该对原数组进行排序，因为排序会改变原数组中元素的相对位置，这样返回的索引就不对了
         Arrays.sort(nums); // O(nlogn)
         int n = nums.length;
         // nlogn
@@ -63,6 +64,7 @@ public class _1_TwoSum {
     // 双指针
     public int[] twoSum3(int[] nums, int target) {
         if (nums == null || nums.length == 0) return new int[0];
+        // TODO 这里有个 bug，我们不应该对原数组进行排序，因为排序会改变原数组中元素的相对位置，这样返回的索引就不对了
         Arrays.sort(nums); // O(nlogn)
         int n = nums.length;
         int i = 0;

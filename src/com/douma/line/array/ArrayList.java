@@ -74,6 +74,8 @@ public class ArrayList<E> {
         }
         // 3. 将新数组覆盖老数组
         data = newData;
+        // bug 修复：将容量设置位新容量值
+        capacity = newCapacity;
     }
 
     // 时间复杂度 O(n)

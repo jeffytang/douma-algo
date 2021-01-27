@@ -60,12 +60,12 @@ public class DoubleLinkedList<E> {
         return node.e;
     }
 
-    public Node getFirst() {
-        return first;
+    public E getFirst() {
+        return first.e;
     }
 
-    public Node getLast() {
-        return last;
+    public E getLast() {
+        return last.e;
     }
 
     // 时间复杂度是 O(n)

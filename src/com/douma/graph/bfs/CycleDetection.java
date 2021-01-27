@@ -54,6 +54,15 @@ public class CycleDetection {
                 } else {
                     // 到了这里，说明：当前的节点 curr 的相邻顶点 w 已经被访问了
                     // bug 修复：如果 curr 的相邻顶点 w 又不是当前顶点的前一个顶点的话，说明有环
+                    /**
+                           a----b
+                            \  /
+                             c
+                     假设先访问 a 节点，然后再访问 b 节点，那么 b 节点的 prev 节点是 a
+                     最后访问节点 c ，这个时候节点 c 是 curr 当前节点
+                     而 a 节点是 c 节点的一个相邻节点 w，这个时候 w 是已经被访问了的
+                     但是 w 又不是 c 节点的 prev 节点，所以存在环
+                     */
                     if (w != prevs[curr]) {
                         return true;
                     }

@@ -52,7 +52,9 @@ public class CycleDetection {
                     // 维护顶点的前一个顶点
                     prevs[w] = curr;
                 } else {
-                    if (w == prevs[curr]) {
+                    // 到了这里，说明：当前的节点 curr 的相邻顶点 w 已经被访问了
+                    // bug 修复：如果 curr 的相邻顶点 w 又不是当前顶点的前一个顶点的话，说明有环
+                    if (w != prevs[curr]) {
                         return true;
                     }
                 }

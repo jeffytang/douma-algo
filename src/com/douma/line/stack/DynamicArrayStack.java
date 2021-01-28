@@ -11,7 +11,7 @@ public class DynamicArrayStack<E> implements Stack<E> {
     private ArrayList<E> data;
 
     public DynamicArrayStack(int capacity) {
-        this.data = new ArrayList<>();
+        this.data = new ArrayList<>(capacity);
     }
 
     @Override

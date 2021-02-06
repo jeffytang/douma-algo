@@ -50,6 +50,8 @@ class MinStack2 {
     public void push(int x) {
         dataStack.push(x);
         // bug 修复：视频中少了 = ，= 号是需要加上的
+        // 如果去掉等于的话，可能会出现 dataStack 不为空，但是 minStack 为空了
+        // 这样下面的 getMin 就会出现异常了
         if (minStack.isEmpty() || x <= minStack.peek()) {
             minStack.push(x);
         }

@@ -32,7 +32,8 @@ public class _179_LargestNumber {
         if (nums[0] == 0) return "0"; // "00000"
 
         StringBuilder sb = new StringBuilder();
-        for (int num : nums) {
+        // bug 修复：这里应该是拼接 str[] 里的元素
+        for (String num : strs) {
             sb.append(num);
         }
         return sb.toString();

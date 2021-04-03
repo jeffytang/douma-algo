@@ -67,7 +67,8 @@ public class MergeSorter {
             } else if (tmp[i] <= tmp[j]) {
                 data[k] = tmp[i++];
             } else {
-                data[k] = data[j++];
+                // bug 修复：这个是 tmp[j++]
+                data[k] = tmp[j++];
             }
         }
     }

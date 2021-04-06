@@ -36,7 +36,8 @@ public class _164_MaximumGap {
             int bucketId = (num - min) / gap;
             buckets[bucketId].hasData = true;
             buckets[bucketId].min = Math.min(buckets[bucketId].min, num);
-            buckets[bucketId].max = Math.min(buckets[bucketId].max, num);
+            // bug 修复：这是是求最大值，所以需要用 max 函数
+            buckets[bucketId].max = Math.max(buckets[bucketId].max, num);
         }
 
         // 4. 计算最大间隔

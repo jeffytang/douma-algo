@@ -108,9 +108,10 @@ public class RBTree<E extends Comparable<E>> {
         }
 
         // 2. 递归调用
+        // bug 修复：插入的时候只考虑不相等的元素，相等的元素不做任何插入动作
         if (e.compareTo(node.data) < 0) {
             node.left = add(node.left, e);
-        } else {
+        } else if (e.compareTo(node.data) > 0){
             node.right = add(node.right, e);
         }
 

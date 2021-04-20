@@ -324,11 +324,17 @@ public class AVLTree<E extends Comparable<E>> {
                 TreeNode rightNode = node.right;
                 node.right = null;
                 size--;
+                // 注意：这里其实可以直接返回 retNode 的
+                // 因为右子树是已经平衡了的，不需要再调整了
+                // 这里不直接返回，是为了统一对 retNode 的处理
                 retNode = rightNode;
             } else if (node.right == null) {
                 TreeNode leftNode = node.left;
                 node.left = null;
                 size--;
+                // 注意：这里其实可以直接返回 retNode 的
+                // 因为左子树是已经平衡了的，不需要再调整了
+                // 这里不直接返回，是为了统一对 retNode 的处理
                 retNode = leftNode;
             } else {
                 // node 的 left 和 right 都不为空
@@ -339,10 +345,15 @@ public class AVLTree<E extends Comparable<E>> {
 
                 node.left = null;
                 node.right = null;
-                size--;
+                // bug 修复，因为递归 remove 中已经进行了 size-- 了
+                // 所以这里不需要了
+                // size--;
                 retNode = successor;
             }
         }
+        // bug 修复：需要对 retNode 判空
+        if (retNode == null) return null;
+
         // 平衡维护(retNode)
         // 更新父亲节点的高度值
         // 父亲节点的高度值等于左右子节点最大的高度值再加上 1
